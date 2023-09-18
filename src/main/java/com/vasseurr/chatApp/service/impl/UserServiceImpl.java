@@ -39,8 +39,9 @@ public class UserServiceImpl implements UserService {
         User user = MappingHelper.getMapper().map(userDto, User.class);
         user.setCreatedBy(user.getUserName());
         user.setModifiedBy(user.getUserName());
+        user = userRepository.save(user);
         logger.info("{} saved", user);
-        return MappingHelper.getMapper().map(userRepository.save(user), UserDto.class);
+        return MappingHelper.getMapper().map(user, UserDto.class);
     }
 
     @Override
@@ -55,8 +56,8 @@ public class UserServiceImpl implements UserService {
     public UserDto delete(UserDto userDto) {
         User user = MappingHelper.getMapper().map(userDto, User.class);
         user.setModifiedBy(user.getUserName());
-        logger.info("{} deleted", user);
         user.setEntityStatus(EntityStatus.PASSIVE);
+        logger.info("{} deleted", user);
         return MappingHelper.getMapper().map(userRepository.save(user), UserDto.class);
     }
 

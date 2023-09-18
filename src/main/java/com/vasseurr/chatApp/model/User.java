@@ -1,13 +1,14 @@
 package com.vasseurr.chatApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vasseurr.chatApp.model.base.AbstractAuditable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "userName", "email" }) })
@@ -30,6 +31,15 @@ public class User extends AbstractAuditable {
     private String email;
 
     private String photoLink;
+
+   /* @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "users")
+    @JsonIgnore
+    private Set<Room> rooms = new HashSet<>();*/
 
     @Override
     public boolean equals(Object o) {

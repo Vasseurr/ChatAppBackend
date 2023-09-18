@@ -22,7 +22,6 @@ public class MappingHelper {
 
     private static void initTypeMappings(ModelMapper mapper) {
         // Burada entity ve Dto lara özel TypeMapping ler oluşturulabilir.
-
     }
 
     private static ModelMapper initMapper() {
