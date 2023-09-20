@@ -1,9 +1,7 @@
 package com.vasseurr.chatApp.controller;
 
 import com.vasseurr.chatApp.dto.RoomDto;
-import com.vasseurr.chatApp.dto.UserDto;
 import com.vasseurr.chatApp.service.RoomService;
-import com.vasseurr.chatApp.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

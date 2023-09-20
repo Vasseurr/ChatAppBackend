@@ -35,18 +35,22 @@ public class RoomServiceImpl implements RoomService {
                         new NoSuchElementFoundException("No such room exists")), RoomDto.class);
     }
 
-   // public RoomDto save(CreateRoomDto createRoomDto) {
     @Override
     public RoomDto save(RoomDto roomDto) {
-        Set<User> userSet = new HashSet<>();
+        /*Set<User> userSet = new HashSet<>();
         userSet.add(MappingHelper.getMapper().map(roomDto.getOnlineUser(), User.class));
         Room room = Room.builder()
                 .users(userSet)
+                .build();*/
+        Room room = Room.builder()
+                .users(roomDto.getUsers().stream().map(
+                        userDto -> MappingHelper.getMapper().map(userDto, User.class)
+                ).collect(Collectors.toSet()))
                 .build();
         room.setCreatedBy(roomDto.getOnlineUser().getUserName());
         room.setModifiedBy(roomDto.getOnlineUser().getUserName());
-        logger.info("{} saved by {}", room, roomDto.getOnlineUser());
         room = roomRepository.save(room);
+        logger.info("{} saved by {}", room, roomDto.getOnlineUser());
         RoomDto tempRoomDto = MappingHelper.getMapper().map(room, RoomDto.class);
         tempRoomDto.setOnlineUser(roomDto.getOnlineUser());
         return tempRoomDto;

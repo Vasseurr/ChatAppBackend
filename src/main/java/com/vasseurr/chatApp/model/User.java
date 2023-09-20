@@ -41,6 +41,13 @@ public class User extends AbstractAuditable {
     @JsonIgnore
     private Set<Room> rooms = new HashSet<>();*/
 
+  /*  @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_messages",
+            joinColumns = { @JoinColumn(name = "userId") },
+            inverseJoinColumns = { @JoinColumn(name = "message_id") })
+    private Set<Message> messages = new HashSet<>();*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
