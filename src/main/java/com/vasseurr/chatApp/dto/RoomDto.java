@@ -17,4 +17,6 @@ public class RoomDto extends BaseDto {
 
     private UserDto onlineUser;
 
+    private boolean createdBefore;
+
 }
